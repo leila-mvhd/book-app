@@ -1,0 +1,26 @@
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #5a5a5a56;
+    padding: 20px;
+    border-radius: 20px;
+}
+header h1{
+    color: seagreen;
+}
+header p>a{
+    color: seagreen;
+    text-decoration: none;
+    transition: all 0.1s linear;
+}
+header p>a:hover{
+    color: #999999;
+}
+footer{
+    background-color: #5a5a5a56;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    color: #999999;    
+}
