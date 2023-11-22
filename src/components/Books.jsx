@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 
-import {books} from '../constants/mockData'
+import {books as bookData} from '../constants/mockData'
 import BookCard from './BookCard';
 import SideCard from './SideCard';
+import SearchBox from './SearchBox';
 
 import styles from './Books.module.css'
 
 function Books() {
     const [favorite,setFavorite]=useState([]);
+    const [search,setSearch]=useState([]);
+    const [books,setBooks]=useState(bookData);
+
+
     const favoriteHandler =(book,status) =>{
-        // setFavorite((favorite)=>[...favorite,id]);
+       
       if(status){
         const newFavorite = favorite.filter(i => i.id !== book.id);
         setFavorite(newFavorite);
@@ -17,9 +22,20 @@ function Books() {
       else{
         setFavorite((favorite)=> [...favorite,book]);
       }
-      console.log(favorite);
     }
+
+    const searchHandler = () =>{
+      if(search){
+        const newBooks=books.filter(book => book.title.toLowerCase().includes(search));
+        setBooks(newBooks);
+      } else {
+        setBooks(bookData);
+      }
+    }
+
     return (
+      <>
+        <SearchBox search={search} setSearch={setSearch} searchHandler={searchHandler} />
         <div className={styles.container}>
             <div className={styles.cards}>
             {books.map(book => <BookCard key={book.id} data={book} favoriteHandler={favoriteHandler} ></BookCard>)}
@@ -28,6 +44,7 @@ function Books() {
                 <h4>Favorites</h4>
                 {favorite.map(book => <SideCard key={book.id} data={book}></SideCard>)}</div>}
         </div>
+      </>
     );
 }
 
