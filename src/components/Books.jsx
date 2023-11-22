@@ -38,7 +38,7 @@ function Books() {
         <SearchBox search={search} setSearch={setSearch} searchHandler={searchHandler} />
         <div className={styles.container}>
             <div className={styles.cards}>
-            {books.map(book => <BookCard key={book.id} data={book} favoriteHandler={favoriteHandler} ></BookCard>)}
+            {books.map(book => <BookCard key={book.id} data={book} favoriteHandler={favoriteHandler} favorite={favorite}></BookCard>)}
             </div>
             {!!favorite.length && <div className={styles.favorite}>
                 <h4>Favorites</h4>
